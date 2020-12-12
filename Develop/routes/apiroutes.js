@@ -1,17 +1,18 @@
 const router = require("express").Router()
 const store = require("../db/store")
 
-router.get("/api/notes", function(req, res){
+router.get("/notes", function(req, res){
+    console.log("test")
     store.getNotes().then(notes => res.json(notes))
     .catch(err => res.status(500).json(err)) 
-})
+    })
 
-router.post("/api/notes", function(req, res){
-    store.addNotes(req.body).then(notes => res.json(notes))
+router.post("/notes", function(req, res){
+    store.addNotes(req.body).then(note => res.json(note))
     .catch(err => res.status(500).json(err))
 })
 
-router.delete("/api/notes/:id", function(req, res){
+router.delete("/notes/:id", function(req, res){
     store.removeNote(req.params.id).then(() => res.json({ok: true}))
     .catch(err => res.status(500).json(err))
 })

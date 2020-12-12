@@ -1,6 +1,6 @@
 const util = require("util")
 const fs = require("fs")
-const uuid = require("uuid")
+const {v4 : uuidv4} = require("uuid")
 
 const readfile = util.promisify(fs.readFile)
 const writefile = util.promisify(fs.writeFile)
@@ -33,7 +33,7 @@ if(!text||!title){
 
 }
 const newNote = {
-text,title,ID:uuid()
+text,title,ID:uuidv4()
 }
 return this.getNotes()
 .then((notes) =>[...notes,newNote])
@@ -42,7 +42,7 @@ return this.getNotes()
 }
 removeNote(id){
 return this.getNotes()
-.then((notes) => notes.filter((note) => note.id !==id))
+.then((notes) => notes.filter((note) => note.ID!==id))
 .then((filterNotes) => this.write(filterNotes))
 }
 }
