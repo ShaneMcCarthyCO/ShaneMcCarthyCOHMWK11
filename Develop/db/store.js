@@ -10,7 +10,7 @@ read(){
 return readfile("db/db.json","utf8")
 
 }
-writefile(note){
+write(note){
     return writefile("db/db.json",JSON.stringify(note))
 }
 getNotes(){
